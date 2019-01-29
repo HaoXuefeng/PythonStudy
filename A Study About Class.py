@@ -6,11 +6,29 @@ class Stu():
     def self(self):
         self.name = input("输入学生姓名：")
         self.age = input("学生年龄")
-        self.gender = input("学生性别")
-        print("My name is {}".format(self.name))
-        print("I'm {} years old".format(self.age))
         return None
 
 
 Ming = Stu()
+print(Stu.name)
+print(Stu.age)
+print(Stu.gender)
+print(id(Stu.name))
+print(id(Stu.age))
+print(id(Stu.gender))
+print('-' * 50)
+print(Ming.name)
+print(Ming.age)
+print(Ming.gender)
+print(id(Ming.name))
+print(id(Ming.age))
+print(id(Ming.gender))
 Ming.self()
+
+print('-' * 50)
+print(Ming.name)
+print(Ming.age)
+print(Ming.gender)
+print(id(Ming.name))
+print(id(Ming.age))
+print(id(Ming.gender))
