@@ -39,7 +39,8 @@ class B():
     name = "sanhuo"
     age = 20
 
-    def x(self):
+    @staticmethod
+    def x():
         print("以下是class B 的属性")
         print(__class__.name)
         print(__class__.age)
@@ -49,13 +50,22 @@ b = B()
 b.x()
 
 
-#        注意:  在类中,有self参数的方法(函数)被称为非绑定类函数(PS:可以通过其他变量访问或调用此函数)
-#               而没有self参数的方法(函数)被称为绑定类函数(PS: 只能通过类来访问)
-# 以上的都是非绑定类函数, 都是在类的外部定义一个变量指向类,再访问类里的函数
-# 下面是一个绑定类函数的例子
+#        注意:  在类中,有self参数的方法(函数)被称为非绑定类方法(PS:可以通过其他变量访问或调用此函数)
+#               而没有self参数的方法(函数)被称为绑定类方法(PS: 只能通过类来访问)
+# 以上的都是非绑定类方法, 都是在类的外部定义一个变量指向类,再访问类里的函数
+# 下面是一个绑定类方法的例子
+# 在非绑定类方法中也可以用 __class__.变量名  来访问类里的变量
+print('-' * 30)
+
+
 class C():
     name = "feng"
     age = 24
+
+    def say1(self):
+        self.name = "HXF"
+        print(self.name)
+        print(__class__.age)
 
     @staticmethod
     def say():
@@ -65,13 +75,16 @@ class C():
         return None
 
 
+c = C()
+c.say1()
 # 调用绑定类的函数需要使用类名来调用
 # 如果直接使用 c = C()   c.say()  的话会报错,Type error,因为这样会直接把c作为一个参数扔到函数里,但是绑定类函数是不需要参数的
 C.say()
 
 
 """
-# 为什么定义这个类的时候会显示这个括号是冗余的?
+# 为什么定义这个类的时候会显示这个括号是冗余的? 
+# 可以在括号里直接写上 object 
 class Stu():
     name = None
     age = 18
@@ -103,4 +116,27 @@ print("Ming's name is {}".format(Ming.name))
 print("Ming is {} years old".format(Ming.age))
 print(Ming.gender)
 Stu.say()
+"""
+
+"""
+
+class Peopoe(object):
+    name = "NoName"
+    age = 18
+
+    def __init__(self):
+        self.name = "Feng"
+        self.age = 24
+
+
+class Stu(Peopoe):
+    def __init__(self):
+        self.name = "HXF"
+
+
+a = Stu()
+print(a.name)
+print(a.age)
+
+# 以上结果说明在调用一个构造函数之后就不会再调用另一个构造函数，不同类，即使是父类和字类，也只会调用一个构造函数
 """
