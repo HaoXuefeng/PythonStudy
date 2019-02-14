@@ -7,7 +7,11 @@ Mixin是为了解决多继承的混乱关系而诞生的，Mixin类是只提供�
 
 class Person(object):
     def __init__(self):
-        self.name = None
+        self.name = "NoName"
+
+    def eat(self, name):
+        self.name = name
+        print("{0} is eating...".format(self.name))
 
 
 class FlyMixin(object):
@@ -26,8 +30,13 @@ class SuperMan(Person, FlyMixin, SwimMixin):
     def __str__(self):
         return "I am very DIAO"
 
+    def eat(self, name):
+        super(SuperMan, self).eat(name)
+        print("And very fast")
+
 
 p1 = SuperMan()
 print(SuperMan.__name__)
 print(p1)
 p1.fly()
+p1.eat("Hxf")
